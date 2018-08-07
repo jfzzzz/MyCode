@@ -58,39 +58,42 @@
   }]
   var headData = ['姓名', '年龄', '科目', '成绩', '操作'];
 
-  var box = document.getElementById('box');
-  var table = document.createElement('table');
-  box.appendChild(table);
+  function activeCreateTable(headData, bodyData) {
+    var box = document.getElementById('box');
+    var table = document.createElement('table');
+    box.appendChild(table);
 
-  var thead = document.createElement('thead');
-  table.appendChild(thead);
-  var tr = document.createElement('tr')
-  thead.appendChild(tr);
-  for (var i = 0; i < headData.length; i++) {
-    var th = document.createElement('th');
-    tr.appendChild(th);
-    th.innerText = headData[i];
-  }
+    var thead = document.createElement('thead');
+    table.appendChild(thead);
+    var tr = document.createElement('tr')
+    thead.appendChild(tr);
+    for (var i = 0; i < headData.length; i++) {
+      var th = document.createElement('th');
+      tr.appendChild(th);
+      th.innerText = headData[i];
+    }
 
-  var tbody = document.createElement('tbody');
-  table.appendChild(tbody);
-  for (var j = 0; j < bodyData.length; j++) {
-    tr = document.createElement('tr');
-    tbody.appendChild(tr);
-    for (var key in bodyData[j]) {
+    var tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+    for (var j = 0; j < bodyData.length; j++) {
+      tr = document.createElement('tr');
+      tbody.appendChild(tr);
+      for (var key in bodyData[j]) {
+        var td = document.createElement('td');
+        tr.appendChild(td);
+        td.innerText = bodyData[j][key];
+      }
       var td = document.createElement('td');
       tr.appendChild(td);
-      td.innerText = bodyData[j][key];
+      var a = document.createElement('a');
+      td.appendChild(a);
+      a.href = '#';
+      a.innerText = '删除';
+      a.onclick = function () {
+        tbody.removeChild(this.parentNode.parentNode);
+        return false;
+      };
     }
-    var td = document.createElement('td');
-    tr.appendChild(td);
-    var a = document.createElement('a');
-    td.appendChild(a);
-    a.href = '#';
-    a.innerText = '删除';
-    a.onclick = function () {
-      tbody.removeChild(this.parentNode.parentNode);
-      return false;
-    };
   }
+  activeCreateTable(headData,bodyData);
 </script>
