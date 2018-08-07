@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    table,
+    th,
+    td {
+      width: 300px;
+      height: 50px;
+      border: 1px solid #000;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+</body>
+
+</html>
+<script>
+  var bodyData = [{
+    name: '张三',
+    age: 18,
+    subject: '数学',
+    score: 99
+  }, {
+    name: '李四',
+    age: 16,
+    subject: '英语',
+    score: 60
+  }, {
+    name: '王五',
+    age: 19,
+    subject: '语文',
+    score: 59
+  }, {
+    name: '赵六',
+    age: 17,
+    subject: '数学',
+    score: 80
+  }]
+  var headData = ['姓名', '年龄', '科目', '成绩', '操作'];
+
+  var box = document.getElementById('box');
+  var table = document.createElement('table');
+  box.appendChild(table);
+
+  var thead = document.createElement('thead');
+  table.appendChild(thead);
+  var tr = document.createElement('tr')
+  thead.appendChild(tr);
+  for (var i = 0; i < headData.length; i++) {
+    var th = document.createElement('th');
+    tr.appendChild(th);
+    th.innerText = headData[i];
+  }
+
+  var tbody = document.createElement('tbody');
+  table.appendChild(tbody);
+  for (var j = 0; j < bodyData.length; j++) {
+    tr = document.createElement('tr');
+    tbody.appendChild(tr);
+    for (var key in bodyData[j]) {
+      var td = document.createElement('td');
+      tr.appendChild(td);
+      td.innerText = bodyData[j][key];
+    }
+    var td = document.createElement('td');
+    tr.appendChild(td);
+    var a = document.createElement('a');
+    td.appendChild(a);
+    a.href = '#';
+    a.innerText = '删除';
+    a.onclick = function () {
+      tbody.removeChild(this.parentNode.parentNode);
+      return false;
+    };
+  }
+</script>
