@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box">
+    <ul id="ul">
+
+    </ul>
+    <ul id="ul2">
+
+    </ul>
+    <ul id="ul3">
+
+    </ul>
+  </div>
+</body>
+
+</html>
+<script>
+  //使用字符串拼接的方式动态创建列表
+  console.time('flag');
+  var arr = ['zs', 'li', 'ww', 'zl'];
+  var str = '';
+  var box = document.getElementById('box');
+  var ul = document.getElementById('ul');
+
+  for (var i = 0; i < arr.length; i++) {
+    str += '<li>' + arr[i] + '</li>';
+  }
+  // console.log(str);
+  ul.innerHTML = str;
+  // var li = document.createElement(li);
+  // ul.appendChild(li);
+  console.timeEnd('flag');
+
+  //使用数组拼接的方式动态创建列表
+  console.time('flag1')
+  var ul2 = document.getElementById('ul2');
+  var arr = ['zs', 'li', 'ww', 'zl'];
+  var arr1 = [];
+  for (var i = 0; i < arr.length; i++) {
+    arr1[i] = '<li>' + arr[i] + '</li>';
+  }
+  var str = arr1.join('');
+  ul2.innerHTML = str;
+  console.timeEnd('flag1');
+
+
+  //使用创建元素的方式来动态创建元素列表。
+  console.time('flag3');
+  var ul3 = document.getElementById('ul3');
+  var arr = ['zs', 'li', 'ww', 'zl'];
+
+  for (var j = 0; j < arr.length; j++) {
+    var li = document.createElement('li');
+    li.innerText = arr[j];
+    ul3.appendChild(li);
+  }
+  console.timeEnd('flag3');
+
+
+  
+  //平均来看，使用数组拼接的方式创建动态列表的性能略高于使用字符串拼接的方式。
+  //使用创建元素的方式来动态创建元素列表的方式还是优于使用字符串拼接的方式，
+
+</script>
