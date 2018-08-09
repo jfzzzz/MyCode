@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 800px;
+      height: 300px;
+      margin: 100px auto;
+      border: 1px solid pink;
+      position: relative;
+    }
+
+    #box ul {
+      position: absolute;
+      left: 40px;
+      bottom: 50px;
+    }
+
+    #box h1 {
+      font-size: 3em;
+      color: #666;
+      text-align: center;
+    }
+
+    #box li {
+      list-style: none;
+      float: left;
+      text-align: center;
+      font-size: 3em;
+      border-radius: 10px;
+      background-color: orange;
+    }
+
+    #box li span {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <h1>距离老可爱回去见小可爱</h1>
+    <ul>
+      <li>
+        还剩下
+        <span id="day">00</span>天</li>
+      <li>
+        <span id="hour">00</span>小时</li>
+      <li>
+        <span id="minute">00</span>分钟</li>
+      <li>
+        <span id="second">00</span>秒</li>
+    </ul>
+  </div>
+  <script>
+    var day = document.getElementById('day');
+    var hour = document.getElementById('hour');
+    var minute = document.getElementById('minute');
+    var second = document.getElementById('second');
+
+    function Interval(now, end) {
+      var interval = end - now;
+      interval /= 1000;
+      var day = Math.floor(interval / 60 / 60 / 24);
+      var hour = Math.floor(interval / 60 / 60 % 24);
+      var minute = Math.floor(interval / 60 % 60);
+      var second = Math.floor(interval % 60);
+
+      return {
+        day: day,
+        hour: hour,
+        minute: minute,
+        second: second
+      }
+    }
+    var end = new Date('2018-10-01');
+
+    setInterval(countdown, 1000);
+    countdown();
+    function countdown() {
+      var now = new Date();
+      var obj = Interval(now, end);
+      day.innerText = obj.day;
+      hour.innerText = obj.hour;
+      minute.innerText = obj.minute;
+      second.innerText = obj.second;
+    }
+
+    // var now = new Data();
+    // var Datafin = Interval(now, end);
+    // day.innerText = Datafin.day;
+    // hour.innerText = Datafin.hour;
+    // minute.innerText = Datafin.minute;
+    // second.innerText = Datafin.second;
+  </script>
+</body>
+
+</html>
