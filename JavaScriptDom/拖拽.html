@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 150px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      background-color: #444444;
+      font-size: 2em;
+      color: #ffffff;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">Drag It</div>
+
+  <script>
+    var box = document.getElementById('box');
+
+    box.onmousedown = function (e) {
+      this.style.cursor = 'all-scroll';
+      var boxLeft = e.offsetX;
+      var boxTop = e.offsetY;
+      document.onmousemove = function (e1) {
+        var x = e1.clientX - boxLeft + 'px';
+        var y = e1.clientY - boxTop + 'px';
+        if (parseInt(x) < 0) {
+          x = 0 + 'px';
+        }
+        if (parseInt(y) < 0) {
+          y = 0 + 'px';
+        }
+        box.style.left = x;
+        box.style.top = y;
+        return false;
+      }
+    }
+    box.onmouseup = function () {
+      box.style.cursor = '';
+      document.onmousemove = null;
+    }
+  </script>
+</body>
+
+</html>
