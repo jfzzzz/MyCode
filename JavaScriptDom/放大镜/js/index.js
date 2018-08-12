@@ -13,11 +13,11 @@ var bigBox = box.children[1];
 var bigImg = bigBox.children[0];
 
 // 1 鼠标移动到小盒子上 显示遮罩 和 显示大图
-smallBox.onmouseover = function () {
+smallBox.onmouseenter = function () {
   mask.style.display = 'block';
   bigBox.style.display = 'block';
 }
-smallBox.onmouseout = function () {
+smallBox.onmouseleave = function () {
   mask.style.display = 'none';
   bigBox.style.display = 'none';
 }
